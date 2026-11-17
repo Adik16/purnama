@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portofolio Muhamad Purnama Salura - Siswa Rekayasa Perangkat Lunak"
+    />
+    <title>Muhamad Purnama Salura | Portfolio</title>
+
+    <style>
+      :root {
+        --green: #18a558;
+        --green-dark: #063d2b;
+        --green-deep: #021d14;
+        --green-soft: #a7f3c8;
+        --lime: #57e389;
+        --white: #f7fff9;
+        --muted: #b6cbbf;
+        --card: rgba(10, 47, 34, 0.82);
+        --line: rgba(167, 243, 200, 0.17);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--green-deep);
+        color: var(--white);
+        line-height: 1.65;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: rgba(24, 165, 88, 0.13);
+        filter: blur(70px);
+        top: -250px;
+        right: -180px;
+        z-index: -1;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .container {
+        width: min(1120px, 90%);
+        margin: auto;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 20;
+        background: rgba(2, 29, 20, 0.78);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-wrap {
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        font-size: 1.25rem;
+        font-weight: 800;
+      }
+
+      .logo span {
+        color: var(--lime);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 24px;
+        list-style: none;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .nav-links a:hover {
+        color: var(--lime);
+      }
+
+      .menu {
+        display: none;
+        background: none;
+        border: 1px solid var(--line);
+        color: white;
+        padding: 8px 11px;
+        border-radius: 8px;
+        font-size: 18px;
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        gap: 70px;
+        padding: 120px 0 70px;
+      }
+
+      .badge {
+        display: inline-block;
+        color: var(--green-soft);
+        border: 1px solid rgba(87, 227, 137, 0.35);
+        background: rgba(24, 165, 88, 0.12);
+        padding: 8px 15px;
+        border-radius: 999px;
+        margin-bottom: 18px;
+      }
+
+      h1 {
+        font-size: clamp(2.7rem, 6vw, 5rem);
+        line-height: 1.08;
+        margin-bottom: 18px;
+      }
+
+      h1 span {
+        color: var(--lime);
+      }
+
+      .hero p {
+        color: var(--muted);
+        font-size: 1.04rem;
+        max-width: 610px;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 28px;
+      }
+
+      .btn {
+        padding: 13px 21px;
+        border-radius: 12px;
+        font-weight: 700;
+        transition: 0.25s;
+        border: 1px solid transparent;
+      }
+
+      .btn-primary {
+        background: var(--green);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(24, 165, 88, 0.25);
+      }
+
+      .btn-secondary {
+        border-color: var(--line);
+        color: var(--green-soft);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .profile-wrap {
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+
+      .profile-glow {
+        position: absolute;
+        width: 360px;
+        height: 360px;
+        background: var(--green);
+        border-radius: 50%;
+        filter: blur(65px);
+        opacity: 0.22;
+      }
+
+      .profile {
+        width: min(390px, 80vw);
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 35px;
+        border: 5px solid rgba(167, 243, 200, 0.3);
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+        position: relative;
+      }
+
+      section {
+        padding: 100px 0;
+      }
+
+      .alt {
+        background: linear-gradient(180deg, rgba(10, 59, 40, 0.55), rgba(2, 29, 20, 0.4));
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .eyebrow {
+        text-align: center;
+        color: var(--lime);
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 12px;
+      }
+
+      .section-sub {
+        text-align: center;
+        color: var(--muted);
+        max-width: 650px;
+        margin: 0 auto 45px;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 55px;
+        align-items: center;
+      }
+
+      .about-photo {
+        width: 100%;
+        max-width: 380px;
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        display: block;
+        margin: auto;
+      }
+
+      .about-text p {
+        color: var(--muted);
+        margin-bottom: 15px;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        margin-top: 25px;
+      }
+
+      .info {
+        background: var(--card);
+        border: 1px solid var(--line);
+        padding: 17px;
+        border-radius: 14px;
+      }
+
+      .info b {
+        color: var(--green-soft);
+        display: block;
+        font-size: 0.86rem;
+        margin-bottom: 4px;
+      }
+
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      .skill {
+        background: var(--card);
+        border: 1px solid var(--line);
+        padding: 25px;
+        border-radius: 18px;
+        transition: 0.25s;
+      }
+
+      .skill:hover {
+        transform: translateY(-7px);
+        border-color: rgba(87, 227, 137, 0.55);
+      }
+
+      .skill h3 {
+        margin-bottom: 8px;
+      }
+
+      .skill p {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .project {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: 0.3s;
+      }
+
+      .project:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+      }
+
+      .project img {
+        width: 100%;
+        height: 230px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .project-content {
+        padding: 24px;
+      }
+
+      .project-content h3 {
+        font-size: 1.35rem;
+        margin-bottom: 8px;
+      }
+
+      .project-content p {
+        color: var(--muted);
+        font-size: 0.94rem;
+        margin-bottom: 16px;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(24, 165, 88, 0.15);
+        color: var(--green-soft);
+        font-size: 0.78rem;
+        margin-right: 6px;
+      }
+
+      .timeline {
+        max-width: 800px;
+        margin: auto;
+      }
+
+      .edu {
+        border-left: 3px solid var(--green);
+        padding: 0 0 35px 28px;
+        position: relative;
+      }
+
+      .edu::before {
+        content: "";
+        position: absolute;
+        width: 13px;
+        height: 13px;
+        background: var(--lime);
+        border-radius: 50%;
+        left: -8px;
+        top: 5px;
+      }
+
+      .edu h3 {
+        font-size: 1.25rem;
+      }
+
+      .edu p {
+        color: var(--muted);
+      }
+
+      .contact-box {
+        background: linear-gradient(135deg, #0a4a31, #063321);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 45px;
+        text-align: center;
+      }
+
+      .contact-box p {
+        color: var(--muted);
+        margin: 10px auto 24px;
+        max-width: 600px;
+      }
+
+      .contact-list {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .contact-item {
+        padding: 13px 18px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.12);
+      }
+
+      footer {
+        padding: 28px 0;
+        text-align: center;
+        color: #8da99a;
+        border-top: 1px solid var(--line);
+      }
+
+      @media (max-width: 800px) {
+        .hero,
+        .about-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .hero {
+          padding-top: 115px;
+          gap: 35px;
+        }
+
+        .hero p {
+          margin: auto;
+        }
+
+        .buttons {
+          justify-content: center;
+        }
+
+        .about-text {
+          text-align: left;
+        }
+
+        .skills {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .projects {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 72px;
+          left: 5%;
+          right: 5%;
+          background: #06281c;
+          border: 1px solid var(--line);
+          padding: 20px;
+          border-radius: 15px;
+          flex-direction: column;
+        }
+
+        .nav-links.show {
+          display: flex;
+        }
+
+        .menu {
+          display: block;
+        }
+
+        .profile {
+          width: 300px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .skills,
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-box {
+          padding: 32px 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <div class="container nav-wrap">
+        <a class="logo" href="#home">Purnama<span>.dev</span></a>
+        <button class="menu" id="menuBtn" aria-label="Buka menu">☰</button>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Beranda</a></li>
+          <li><a href="#about">Tentang</a></li>
+          <li><a href="#skills">Keahlian</a></li>
+          <li><a href="#projects">Proyek</a></li>
+          <li><a href="#education">Pendidikan</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <div class="container hero" id="home">
+        <div>
+          <div class="badge">🌿 Portfolio • RPL Student</div>
+          <h1>Halo, Saya <span>Muhamad Purnama Salura</span></h1>
+          <p>
+            Siswa Rekayasa Perangkat Lunak yang memiliki minat dalam teknologi,
+            pengembangan perangkat lunak, pembuatan website, dan desain UI/UX.
+          </p>
+
+          <div class="buttons">
+            <a class="btn btn-primary" href="#projects">Lihat Proyek</a>
+            <a class="btn btn-secondary" href="#contact">Hubungi Saya</a>
+          </div>
+        </div>
+
+        <div class="profile-wrap">
+          <div class="profile-glow"></div>
+          <img
+            class="profile"
+            src="profile.png"
+            alt="Foto profil Muhamad Purnama Salura"
+          />
+        </div>
+      </div>
+
+      <section class="alt" id="about">
+        <div class="container">
+          <div class="eyebrow">TENTANG SAYA</div>
+          <h2 class="section-title">Mengenal Saya Lebih Dekat</h2>
+
+          <div class="about-grid">
+            <img class="about-photo" src="profile.png" alt="Foto profil" />
+
+            <div class="about-text">
+              <p>
+                Saya merupakan siswa SMKN 1 Cipeundeuy jurusan Rekayasa
+                Perangkat Lunak (RPL). Saya tertarik mempelajari teknologi dan
+                membuat proyek sederhana menggunakan pemrograman.
+              </p>
+              <p>
+                Saya juga mempelajari desain UI/UX dan pengembangan aplikasi.
+                Saya memiliki kemampuan belajar yang baik, mudah beradaptasi,
+                mampu bekerja sama dalam tim, dan terus berusaha mengembangkan
+                keterampilan.
+              </p>
+
+              <div class="info-grid">
+                <div class="info"><b>NAMA</b>Muhamad Purnama Salura</div>
+                <div class="info"><b>SEKOLAH</b>SMKN 1 Cipeundeuy</div>
+                <div class="info"><b>JURUSAN</b>Rekayasa Perangkat Lunak</div>
+                <div class="info"><b>LOKASI</b>Bandung, Jawa Barat, Indonesia</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="container">
+          <div class="eyebrow">KEAHLIAN</div>
+          <h2 class="section-title">Teknologi yang Saya Pelajari</h2>
+          <p class="section-sub">
+            Beberapa kemampuan yang menjadi bagian dari perjalanan belajar saya di
+            bidang teknologi.
+          </p>
+
+          <div class="skills">
+            <div class="skill">
+              <h3>🌐 HTML</h3>
+              <p>Membuat struktur dan halaman website.</p>
+            </div>
+            <div class="skill">
+              <h3>🎨 CSS</h3>
+              <p>Membuat tampilan modern dan responsif.</p>
+            </div>
+            <div class="skill">
+              <h3>🐘 PHP</h3>
+              <p>Mempelajari pengembangan website dinamis.</p>
+            </div>
+            <div class="skill">
+              <h3>🗄️ MySQL</h3>
+              <p>Mengelola dan menyimpan data aplikasi.</p>
+            </div>
+            <div class="skill">
+              <h3>🎯 Figma / UI UX</h3>
+              <p>Membuat rancangan antarmuka aplikasi.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="alt" id="projects">
+        <div class="container">
+          <div class="eyebrow">PROYEK</div>
+          <h2 class="section-title">Hasil Karya Saya</h2>
+          <p class="section-sub">
+            Kumpulan proyek yang menggambarkan kemampuan dan pengalaman belajar
+            saya.
+          </p>
+
+          <div class="projects">
+            <article class="project">
+              <img src="assets/project-kasir.jpg" alt="Tampilan project website kasir" />
+              <div class="project-content">
+                <h3>Website Kasir</h3>
+                <p>
+                  Aplikasi kasir sederhana untuk mencari produk, mengelola
+                  keranjang, dan menghitung total serta kembalian transaksi.
+                </p>
+                <span class="tag">Kasir</span>
+                <span class="tag">Interaktif</span>
+                <div class="buttons">
+                  <a class="btn btn-primary" href="kasir.html">Lihat Project</a>
+                </div>
+              </div>
+            </article>
+            <article class="project">
+              <img src="assets/project-instagram.jpg" alt="Mockup antarmuka aplikasi" />
+              <div class="project-content">
+                <h3>Mockup &amp; Prototype</h3>
+                <p>
+                  Rancangan antarmuka dan prototype interaktif yang dibuat
+                  menggunakan Figma.
+                </p>
+                <span class="tag">Mockup</span>
+                <span class="tag">Prototype</span>
+                <div class="buttons">
+                  <a
+                    class="btn btn-primary"
+                    href="https://www.figma.com/design/3QugpfRD8W2ygxwGufCVMh/Untitled?m=auto&amp;t=zQ6cBsrkRpDxUQ9n-6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Lihat Prototype</a
+                  >
+                </div>
+              </div>
+            </article>
+            <article class="project">
+              <img
+                src="assets/project-sekolah.jpg"
+                alt="Ilustrasi website sekolah untuk studi kasus usability testing"
+              />
+              <div class="project-content">
+                <h3>Website Usability Testing</h3>
+                <p>
+                  Studi kasus kemudahan menemukan informasi di website sekolah,
+                  beserta temuan pengujian dan rekomendasi perbaikan.
+                </p>
+                <span class="tag">Usability Testing</span>
+                <span class="tag">Studi Kasus</span>
+                <div class="buttons">
+                  <a class="btn btn-primary" href="usability-testing.html"
+                    >Lihat Studi Kasus</a
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="education">
+        <div class="container">
+          <div class="eyebrow">PENDIDIKAN</div>
+          <h2 class="section-title">Perjalanan Pendidikan</h2>
+
+          <div class="timeline">
+            <div class="edu">
+              <h3>SMKN 1 Cipeundeuy</h3>
+              <p>Rekayasa Perangkat Lunak • Juli 2024 – Sekarang</p>
+            </div>
+            <div class="edu">
+              <h3>SMPN 1 Cikalongwetan</h3>
+              <p>2021 – 2024</p>
+            </div>
+            <div class="edu">
+              <h3>SDN Nugraha</h3>
+              <p>2016 – 2021</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="alt" id="contact">
+        <div class="container">
+          <div class="contact-box">
+            <div class="eyebrow">KONTAK</div>
+            <h2 class="section-title">Mari Terhubung</h2>
+            <p>
+              Saya terbuka untuk belajar, berdiskusi, dan mengembangkan
+              pengalaman melalui proyek-proyek baru.
+            </p>
+
+            <div class="contact-list">
+              <a class="contact-item" href="mailto:mpurnamasalura@gmail.com"
+                >📧 mpurnamasalura@gmail.com</a
+              >
+              <a
+                class="contact-item"
+                href="https://www.linkedin.com/in/muhamad-purnama-salura-03a386337"
+                target="_blank"
+                >💼 LinkedIn</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">© 2026 Muhamad Purnama Salura • Website Portofolio</div>
+    </footer>
+
+    <script>
+      const menuBtn = document.getElementById('menuBtn');
+      const navLinks = document.getElementById('navLinks');
+
+      menuBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+
+      document
+        .querySelectorAll('.nav-links a')
+        .forEach((a) =>
+          a.addEventListener('click', () => navLinks.classList.remove('show'))
+        );
+    </script>
+  </body>
+</html>

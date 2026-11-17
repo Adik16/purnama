@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Studi kasus usability testing website sekolah: ringkasan, delapan temuan, skor, dan rekomendasi perbaikan."
+    />
+    <title>Usability Testing Website Sekolah | Purnama</title>
+    <style>
+      :root {
+        --forest: #073a2a;
+        --forest-deep: #04291e;
+        --green: #178653;
+        --mint: #dff3e8;
+        --lime: #a7e4bf;
+        --paper: #f8faf7;
+        --ink: #1b2b22;
+        --muted: #64736a;
+        --line: #dce5de;
+        --white: #fff;
+        --amber: #fff2d6;
+        --amber-ink: #7d5411;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.65;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .topbar {
+        position: absolute;
+        inset: 0 0 auto;
+        z-index: 1;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+        color: var(--white);
+      }
+
+      .topbar-inner {
+        width: min(1120px, 90%);
+        height: 74px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .brand {
+        color: var(--white);
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .brand span {
+        color: var(--lime);
+      }
+
+      .back-link {
+        color: #d6e9dc;
+        font-size: 0.92rem;
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        color: var(--lime);
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 150px 0 76px;
+        background:
+          radial-gradient(ellipse at 82% 18%, rgba(35, 143, 91, 0.34), transparent 34%),
+          linear-gradient(135deg, var(--forest-deep), var(--forest));
+        color: var(--white);
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        width: 430px;
+        height: 430px;
+        right: -210px;
+        bottom: -290px;
+        border: 1px solid rgba(167, 228, 191, 0.3);
+        border-radius: 50%;
+        box-shadow: 0 0 0 45px rgba(167, 228, 191, 0.04),
+          0 0 0 90px rgba(167, 228, 191, 0.04);
+        pointer-events: none;
+      }
+
+      .hero-inner,
+      .content,
+      .footer-inner {
+        width: min(1120px, 90%);
+        margin: auto;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 0.78fr;
+        gap: 56px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        margin-bottom: 15px;
+        color: var(--lime);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 700px;
+        margin-bottom: 18px;
+        font-size: clamp(2.5rem, 6vw, 4.8rem);
+        line-height: 1.04;
+        letter-spacing: -0.055em;
+      }
+
+      .hero-copy {
+        max-width: 620px;
+        color: #ccded2;
+        font-size: 1.06rem;
+      }
+
+      .hero-image-wrap {
+        padding: 11px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 23px;
+        background: rgba(255, 255, 255, 0.08);
+        transform: rotate(2deg);
+      }
+
+      .hero-image {
+        display: block;
+        width: 100%;
+        border-radius: 15px;
+      }
+
+      .metadata {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 35px;
+      }
+
+      .metadata-item {
+        padding: 14px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .metadata-item span {
+        display: block;
+        margin-bottom: 2px;
+        color: #b7cfc0;
+        font-size: 0.75rem;
+      }
+
+      .metadata-item strong {
+        font-size: 0.9rem;
+      }
+
+      .section-nav {
+        border-bottom: 1px solid var(--line);
+        background: var(--white);
+      }
+
+      .section-nav-inner {
+        width: min(1120px, 90%);
+        min-height: 58px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        gap: 27px;
+        overflow-x: auto;
+      }
+
+      .section-nav a {
+        flex: 0 0 auto;
+        color: var(--muted);
+        font-size: 0.87rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .section-nav a:hover {
+        color: var(--green);
+      }
+
+      .content {
+        padding: 74px 0;
+      }
+
+      .intro-grid {
+        display: grid;
+        grid-template-columns: 0.75fr 1.25fr;
+        gap: 64px;
+        align-items: start;
+      }
+
+      .section-kicker {
+        margin-bottom: 9px;
+        color: var(--green);
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin-bottom: 14px;
+        font-size: clamp(1.75rem, 3vw, 2.45rem);
+        line-height: 1.15;
+        letter-spacing: -0.035em;
+      }
+
+      .intro-copy {
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .intro-copy p + p {
+        margin-top: 14px;
+      }
+
+      .score-band {
+        margin: 0 0 76px;
+        padding: 26px;
+        border: 1px solid #d5e7db;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #edf7f0, #f8fbf8);
+      }
+
+      .score-band-heading {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 20px;
+      }
+
+      .score-band-heading h2 {
+        margin: 0;
+        font-size: 1.45rem;
+      }
+
+      .score-band-heading p {
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .score-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      .score-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 19px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--white);
+      }
+
+      .score-card p {
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .score-card strong {
+        color: var(--forest);
+        font-size: 2rem;
+        line-height: 1;
+      }
+
+      .score-card.low {
+        border-left: 4px solid #d89c36;
+      }
+
+      .score-card.high {
+        border-left: 4px solid var(--green);
+      }
+
+      .findings-section {
+        margin-bottom: 78px;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 22px;
+        margin-bottom: 25px;
+      }
+
+      .section-heading h2 {
+        margin-bottom: 0;
+      }
+
+      .section-heading p {
+        max-width: 380px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .findings-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .finding {
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        gap: 14px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--white);
+      }
+
+      .finding-code {
+        display: grid;
+        place-items: center;
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+        background: var(--mint);
+        color: var(--forest);
+        font-size: 0.75rem;
+        font-weight: 800;
+      }
+
+      .finding h3 {
+        margin: 1px 0 4px;
+        font-size: 0.99rem;
+      }
+
+      .finding p {
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .finding.priority {
+        border-color: #efdbb6;
+        background: #fffcf6;
+      }
+
+      .finding.priority .finding-code {
+        background: var(--amber);
+        color: var(--amber-ink);
+      }
+
+      .finding.strong .finding-code {
+        background: #dff3e8;
+      }
+
+      .recommendation {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 36px;
+        padding: 34px;
+        border-radius: 20px;
+        background: var(--forest);
+        color: var(--white);
+      }
+
+      .recommendation .section-kicker {
+        color: var(--lime);
+      }
+
+      .recommendation h2 {
+        margin-bottom: 0;
+      }
+
+      .recommendation-intro {
+        margin-top: 11px;
+        color: #c3d9cb;
+        font-size: 0.92rem;
+      }
+
+      .recommendation-list {
+        display: grid;
+        gap: 12px;
+        list-style: none;
+        counter-reset: recommendations;
+      }
+
+      .recommendation-list li {
+        position: relative;
+        padding: 0 0 14px 43px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.17);
+        color: #e7f2eb;
+        counter-increment: recommendations;
+      }
+
+      .recommendation-list li:last-child {
+        padding-bottom: 0;
+        border: 0;
+      }
+
+      .recommendation-list li::before {
+        content: "0" counter(recommendations);
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: var(--lime);
+        font-size: 0.82rem;
+        font-weight: 800;
+      }
+
+      .source-note {
+        margin-top: 22px;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      footer {
+        padding: 24px 0;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+      }
+
+      .footer-inner a {
+        color: var(--green);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      @media (max-width: 800px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 34px;
+        }
+
+        .hero-image-wrap {
+          width: min(530px, 100%);
+          transform: none;
+        }
+
+        .intro-grid,
+        .recommendation {
+          grid-template-columns: 1fr;
+          gap: 22px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .topbar-inner,
+        .hero-inner,
+        .content,
+        .footer-inner,
+        .section-nav-inner {
+          width: min(100% - 32px, 520px);
+        }
+
+        .topbar-inner {
+          height: 64px;
+        }
+
+        .back-link {
+          font-size: 0.8rem;
+        }
+
+        .hero {
+          padding: 118px 0 52px;
+        }
+
+        .metadata,
+        .score-grid,
+        .findings-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .metadata {
+          gap: 8px;
+          margin-top: 25px;
+        }
+
+        .metadata-item {
+          padding: 11px 13px;
+        }
+
+        .section-nav-inner {
+          gap: 20px;
+        }
+
+        .content {
+          padding: 52px 0;
+        }
+
+        .intro-grid {
+          gap: 15px;
+          margin-bottom: 48px;
+        }
+
+        .score-band {
+          margin-bottom: 55px;
+          padding: 19px;
+        }
+
+        .score-band-heading,
+        .section-heading {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .findings-section {
+          margin-bottom: 55px;
+        }
+
+        .recommendation {
+          padding: 25px 20px;
+        }
+
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index.html">Purnama<span>.dev</span></a>
+        <a class="back-link" href="index.html#projects">← Kembali ke proyek</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-inner">
+          <div>
+            <p class="eyebrow">Studi Kasus · Pengujian Usabilitas</p>
+            <h1 id="page-title">Menguji kemudahan website sekolah</h1>
+            <p class="hero-copy">
+              Rangkuman temuan dari delapan task untuk melihat seberapa mudah
+              informasi penting sekolah ditemukan dan digunakan.
+            </p>
+            <div class="metadata" aria-label="Ringkasan pengujian">
+              <div class="metadata-item">
+                <span>Objek pengujian</span>
+                <strong>Website sekolah</strong>
+              </div>
+              <div class="metadata-item">
+                <span>Fokus</span>
+                <strong>Temuan &amp; perbaikan</strong>
+              </div>
+              <div class="metadata-item">
+                <span>Cakupan</span>
+                <strong>8 task (TC-01–TC-08)</strong>
+              </div>
+            </div>
+          </div>
+          <div class="hero-image-wrap">
+            <img
+              class="hero-image"
+              src="assets/project-sekolah.jpg"
+              alt="Ilustrasi website sekolah"
+            />
+          </div>
+        </div>
+      </section>
+
+      <nav class="section-nav" aria-label="Navigasi studi kasus">
+        <div class="section-nav-inner">
+          <a href="#overview">Ringkasan</a>
+          <a href="#scores">Skor utama</a>
+          <a href="#findings">Temuan</a>
+          <a href="#recommendations">Rekomendasi</a>
+        </div>
+      </nav>
+
+      <div class="content">
+        <section class="intro-grid" id="overview">
+          <div>
+            <p class="section-kicker">01 · Ringkasan</p>
+            <h2>Informasi sekolah sebagai fokus evaluasi</h2>
+          </div>
+          <div class="intro-copy">
+            <p>
+              Pengujian meninjau perjalanan pengguna saat mencari informasi
+              utama pada website sekolah, seperti profil, berita, agenda,
+              galeri, kontak, dan data sekolah.
+            </p>
+            <p>
+              Sebagian besar temuan menunjukkan informasi relatif mudah
+              ditemukan. Area data sekolah menjadi prioritas untuk ditinjau
+              kembali, sementara galeri memperoleh skor tertinggi dalam laporan.
+            </p>
+          </div>
+        </section>
+
+        <section class="score-band" id="scores" aria-labelledby="scores-title">
+          <div class="score-band-heading">
+            <div>
+              <p class="section-kicker">Sorotan hasil</p>
+              <h2 id="scores-title">Rentang skor yang dicatat</h2>
+            </div>
+            <p>Skor pada laporan menggunakan SEQ.</p>
+          </div>
+          <div class="score-grid">
+            <article class="score-card low">
+              <div>
+                <strong>5,8</strong>
+                <p>Skor terendah · Data sekolah (TC-04)</p>
+              </div>
+              <span aria-hidden="true">↘</span>
+            </article>
+            <article class="score-card high">
+              <div>
+                <strong>6,8</strong>
+                <p>Skor tertinggi · Galeri sekolah (TC-06)</p>
+              </div>
+              <span aria-hidden="true">↗</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="findings-section" id="findings">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">02 · Analisis</p>
+              <h2>Temuan dari delapan task</h2>
+            </div>
+            <p>
+              Catatan berikut merangkum hasil yang terlihat pada materi
+              pengujian, tanpa menambahkan skor untuk task yang tidak dicantumkan.
+            </p>
+          </div>
+          <div class="findings-grid">
+            <article class="finding">
+              <span class="finding-code">TC-01</span>
+              <div>
+                <h3>Beranda mudah dipahami</h3>
+                <p>Informasi utama dapat terlihat dengan jelas.</p>
+              </div>
+            </article>
+            <article class="finding">
+              <span class="finding-code">TC-02</span>
+              <div>
+                <h3>Profil sekolah mudah ditemukan</h3>
+                <p>Pengguna dapat menemukannya melalui menu Profil.</p>
+              </div>
+            </article>
+            <article class="finding">
+              <span class="finding-code">TC-03</span>
+              <div>
+                <h3>Berita mudah dijangkau</h3>
+                <p>Publikasi atau berita relatif mudah ditemukan dan dibuka.</p>
+              </div>
+            </article>
+            <article class="finding priority">
+              <span class="finding-code">TC-04</span>
+              <div>
+                <h3>Data sekolah perlu ditinjau</h3>
+                <p>Nilai 5,8 menjadi skor terendah pada task yang dilaporkan.</p>
+              </div>
+            </article>
+            <article class="finding">
+              <span class="finding-code">TC-05</span>
+              <div>
+                <h3>Agenda sekolah mudah ditemukan</h3>
+                <p>Informasi agenda dinilai cukup mudah diakses.</p>
+              </div>
+            </article>
+            <article class="finding strong">
+              <span class="finding-code">TC-06</span>
+              <div>
+                <h3>Galeri menjadi bagian terkuat</h3>
+                <p>
+                  Skor tertinggi, 6,8; dokumentasi atau foto mudah ditemukan
+                  dan dibuka.
+                </p>
+              </div>
+            </article>
+            <article class="finding">
+              <span class="finding-code">TC-07</span>
+              <div>
+                <h3>Kontak mudah diakses</h3>
+                <p>Informasi kontak sekolah ditemukan melalui menu Kontak.</p>
+              </div>
+            </article>
+            <article class="finding">
+              <span class="finding-code">TC-08</span>
+              <div>
+                <h3>Pencarian membantu pengguna</h3>
+                <p>Fitur pencarian membantu menemukan informasi yang dibutuhkan.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="recommendation" id="recommendations">
+          <div>
+            <p class="section-kicker">03 · Rekomendasi</p>
+            <h2>Perbaiki yang paling dibutuhkan, pertahankan yang sudah baik</h2>
+            <p class="recommendation-intro">
+              Prioritas mengikuti task dengan skor SEQ terendah pada hasil
+              pengujian.
+            </p>
+          </div>
+          <ol class="recommendation-list">
+            <li>
+              Tinjau kembali cara data sekolah disusun dan ditemukan pada
+              website (TC-04).
+            </li>
+            <li>
+              Pertahankan kemudahan menemukan dan membuka dokumentasi pada
+              galeri (TC-06).
+            </li>
+            <li>
+              Validasi perubahan pada area data sekolah melalui pengujian
+              usability berikutnya.
+            </li>
+          </ol>
+        </section>
+        <p class="source-note">
+          Sumber isi: ringkasan analisis dan rekomendasi usability testing yang
+          diberikan untuk proyek ini.
+        </p>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>© 2026 Muhamad Purnama Salura · Studi kasus usability testing</span>
+        <a href="index.html#projects">Kembali ke semua proyek ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>
